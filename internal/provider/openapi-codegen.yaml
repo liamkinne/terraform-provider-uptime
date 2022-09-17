@@ -1,0 +1,7 @@
+package: provider
+generate:
+  client: true
+  models: true
+output: ./uptime.gen.go
+compatibility:
+  old-enum-conflicts: true
