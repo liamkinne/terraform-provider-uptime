@@ -25,11 +25,12 @@ func resourceCheckHTTP() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"name": {
-				Description: "Check display name",
+				Description: "Display name",
 				Type:        schema.TypeString,
 				Required:    true,
 			},
 			"contact_groups": {
+				Description: "Who to direct notifications to",
 				Type:     schema.TypeSet,
 				Required: true,
 				Elem: &schema.Schema{
@@ -37,6 +38,7 @@ func resourceCheckHTTP() *schema.Resource {
 				},
 			},
 			"locations": {
+				Description: "Geographic locations for the check to run from",
 				Type:     schema.TypeSet,
 				Required: true,
 				Elem: &schema.Schema{
@@ -44,6 +46,7 @@ func resourceCheckHTTP() *schema.Resource {
 				},
 			},
 			"tags": {
+				Description: "Tags to identify groups of checks",
 				Type:     schema.TypeSet,
 				Optional: true,
 				Elem: &schema.Schema{
@@ -51,14 +54,17 @@ func resourceCheckHTTP() *schema.Resource {
 				},
 			},
 			"paused": {
+				"Whether the check is active or inactive",
 				Type:        schema.TypeBool,
 				Optional:    true,
 			},
 			"interval": {
+				"The interval in seconds for the check to run",
 				Type:        schema.TypeInt,
 				Required:    true,
 			},
 			"address": {
+				"The HTTP URL to run the check against",
 				Description: "The URL to check",
 				Type:        schema.TypeString,
 				Required:    true,
