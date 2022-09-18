@@ -4,17 +4,17 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-// Takes the result of flatmap.Expand for a slice of strings
-// and returns a list
-func expandStringList(configured []interface{}) []string {
-	vs := make([]string, 0, len(configured))
-	for _, v := range configured {
-		vs = append(vs, v.(string))
-	}
-	return vs
-}
+func flattenSet(set interface{}) []string {
+	input := set.(*schema.Set)
+	tags := make([]string, len(input.List()))
 
-// Expand a schema.Set into a slice of strings
-func expandSetAttr(set interface{}) []string {
-	return expandStringList(set.(*schema.Set).List())
+	if input == nil {
+		return tags
+	}
+
+	for k, v := range input.List() {
+		tags[k] = v.(string)
+	}
+
+	return tags
 }
