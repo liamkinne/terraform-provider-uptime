@@ -17767,7 +17767,9 @@ func (r PostServiceCreateHeartbeatResponse) StatusCode() int {
 type PostServiceCreateHttpResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ChecksHTTP
+	JSON200      *struct {
+		Results *ChecksHTTP `json:"results,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -23852,7 +23854,9 @@ func ParsePostServiceCreateHttpResponse(rsp *http.Response) (*PostServiceCreateH
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ChecksHTTP
+		var dest struct {
+			Results *ChecksHTTP `json:"results,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
