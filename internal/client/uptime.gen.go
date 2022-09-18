@@ -17519,7 +17519,9 @@ func (r GetServicetaglistResponse) StatusCode() int {
 type PostServicetaglistResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *CheckTag
+	JSON200      *struct {
+		Results *CheckTag `json:"results,omitempty"`
+	}
 }
 
 // Status returns HTTPResponse.Status
@@ -23567,7 +23569,9 @@ func ParsePostServicetaglistResponse(rsp *http.Response) (*PostServicetaglistRes
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CheckTag
+		var dest struct {
+			Results *CheckTag `json:"results,omitempty"`
+		}
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
