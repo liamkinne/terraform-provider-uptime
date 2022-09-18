@@ -12,7 +12,7 @@ import (
 
 func resourceCheckHTTP() *schema.Resource {
 	return &schema.Resource{
-		Description: "Tag which can be applied to checks.",
+		Description: "A HTTP check instance.",
 
 		CreateContext: resourceCheckHTTPCreate,
 		ReadContext:   resourceCheckHTTPRead,
