@@ -57,4 +57,4 @@ Coverage of relevant features in the Uptime.com API.
 
 ### Data Sources
 
-- [x] Probe servers
+- [ ] Probe servers
