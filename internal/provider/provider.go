@@ -43,6 +43,7 @@ func New(version string) func() *schema.Provider {
 			},
 			ResourcesMap: map[string]*schema.Resource{
 				"uptime_checktag": resourceCheckTag(),
+				"uptime_check_http": resourceCheckHTTP(),
 			},
 		}
 
