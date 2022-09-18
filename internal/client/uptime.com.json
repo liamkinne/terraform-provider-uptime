@@ -9581,11 +9581,17 @@
             "readOnly": true
           },
           "escalations": {
-            "type": "string",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
             "readOnly": true
           },
           "maintenance": {
-            "type": "string",
+            "type": "object",
+            "items": {
+              "type": "string"
+            },
             "readOnly": true
           },
           "monitoring_service_type": {

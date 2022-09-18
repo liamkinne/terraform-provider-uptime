@@ -1126,13 +1126,13 @@ type ChecksHTTP struct {
 	// Array of contact names or IDs associated with this check
 	ContactGroups      []string   `json:"contact_groups"`
 	CreatedAt          *time.Time `json:"created_at,omitempty"`
-	Escalations        *string    `json:"escalations,omitempty"`
+	Escalations        *[]string  `json:"escalations,omitempty"`
 	IsPaused           *bool      `json:"is_paused,omitempty"`
 	IsUnderMaintenance *bool      `json:"is_under_maintenance,omitempty"`
 
 	// Array of locations associated with this check
 	Locations                 *[]string                      `json:"locations,omitempty"`
-	Maintenance               *string                        `json:"maintenance,omitempty"`
+	Maintenance               *map[string]interface{}        `json:"maintenance,omitempty"`
 	ModifiedAt                *time.Time                     `json:"modified_at,omitempty"`
 	MonitoringServiceType     *string                        `json:"monitoring_service_type,omitempty"`
 	MspAddress                string                         `json:"msp_address"`
