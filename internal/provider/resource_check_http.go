@@ -54,18 +54,17 @@ func resourceCheckHTTP() *schema.Resource {
 				},
 			},
 			"paused": {
-				"Whether the check is active or inactive",
+				Description: "Whether the check is active or inactive",
 				Type:        schema.TypeBool,
 				Optional:    true,
 			},
 			"interval": {
-				"The interval in seconds for the check to run",
+				Description: "The interval in seconds for the check to run",
 				Type:        schema.TypeInt,
 				Required:    true,
 			},
 			"address": {
-				"The HTTP URL to run the check against",
-				Description: "The URL to check",
+				Description: "The HTTP URL to run the check against",
 				Type:        schema.TypeString,
 				Required:    true,
 			},
