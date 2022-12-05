@@ -2,12 +2,12 @@ package provider
 
 import (
 	"context"
-	"net/http"
 	"fmt"
+	"net/http"
 
-	"github.com/hashicorp/terraform-plugin-sdk/v2/meta"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/meta"
 
 	uptime "github.com/liamkinne/terraform-provider-uptime/internal/client"
 )
@@ -39,10 +39,10 @@ func New(version string) func() *schema.Provider {
 				},
 			},
 			DataSourcesMap: map[string]*schema.Resource{
-				"scaffolding_data_source": dataSourceScaffolding(),
+				"uptime_probe_servers": dataSourceProbeServers(),
 			},
 			ResourcesMap: map[string]*schema.Resource{
-				"uptime_checktag": resourceCheckTag(),
+				"uptime_checktag":   resourceCheckTag(),
 				"uptime_check_http": resourceCheckHTTP(),
 			},
 		}
@@ -57,9 +57,9 @@ func configure(version string, p *schema.Provider) func(context.Context, *schema
 	return func(ctx context.Context, data *schema.ResourceData) (any, diag.Diagnostics) {
 		customProvider := func(ctx context.Context, req *http.Request) error {
 			key := data.Get("api_key").(string)
-            req.Header.Set("Authorization", fmt.Sprintf("Token %s", key))
+			req.Header.Set("Authorization", fmt.Sprintf("Token %s", key))
 
-            sub := data.Get("subaccount").(string)
+			sub := data.Get("subaccount").(string)
 			if sub != "" {
 				req.Header.Set("X-Subaccount", sub)
 			}
@@ -74,10 +74,10 @@ func configure(version string, p *schema.Provider) func(context.Context, *schema
 				req.Header.Set("Content-type", "application/json")
 			}
 
-            return nil
-        }
+			return nil
+		}
 
-        url := data.Get("api_url").(string)
+		url := data.Get("api_url").(string)
 		client, err := uptime.NewClientWithResponses(url, uptime.WithRequestEditorFn(customProvider))
 		if err != nil {
 			diag.Errorf("error creating new REST client: %v", err)

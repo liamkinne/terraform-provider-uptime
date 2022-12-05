@@ -59,7 +59,7 @@ func resourceCheckTagCreate(ctx context.Context, d *schema.ResourceData, meta an
 	} else {
 		return diag.Errorf("create check tag resource response is null")
 	}
-	
+
 	tflog.Trace(ctx, "created a check tag resource")
 
 	return nil

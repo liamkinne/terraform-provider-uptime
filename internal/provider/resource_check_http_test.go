@@ -23,7 +23,7 @@ func TestAccResourceCheckHTTP(t *testing.T) {
 	})
 }
 
-const testAccResourceCheckHTTP= `
+const testAccResourceCheckHTTP = `
 resource "uptime_check_http" "foo" {
   name = "bar"
   address = "https://example.com/"

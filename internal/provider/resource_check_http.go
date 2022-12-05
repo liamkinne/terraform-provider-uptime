@@ -31,24 +31,24 @@ func resourceCheckHTTP() *schema.Resource {
 			},
 			"contact_groups": {
 				Description: "Who to direct notifications to",
-				Type:     schema.TypeSet,
-				Required: true,
+				Type:        schema.TypeSet,
+				Required:    true,
 				Elem: &schema.Schema{
 					Type: schema.TypeString,
 				},
 			},
 			"locations": {
 				Description: "Geographic locations for the check to run from",
-				Type:     schema.TypeSet,
-				Required: true,
+				Type:        schema.TypeSet,
+				Required:    true,
 				Elem: &schema.Schema{
 					Type: schema.TypeString,
 				},
 			},
 			"tags": {
 				Description: "Tags to identify groups of checks",
-				Type:     schema.TypeSet,
-				Optional: true,
+				Type:        schema.TypeSet,
+				Optional:    true,
 				Elem: &schema.Schema{
 					Type: schema.TypeString,
 				},
