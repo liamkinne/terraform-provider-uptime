@@ -12,3 +12,7 @@ gen: ## generate docs and openapi client code
 .PHONY: testacc
 testacc: ## run tests
 	TF_ACC=1 go test ./... -v $(TESTARGS) -timeout 120m
+
+.PHONY: gettoken
+gettoken: ## open browser to get token
+	open https://uptime.com/api/tokens
