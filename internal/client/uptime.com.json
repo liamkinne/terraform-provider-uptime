@@ -5068,7 +5068,17 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": ""
+            "description": "List all probe servers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProbeServer",
+                  },
+                }
+              }
+            }
           }
         },
         "tags": [
@@ -14074,6 +14084,23 @@
         "required": [
           "email"
         ]
+      },
+      "ProbeServer": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "readOnly": true,
+          },
+          "probe_name": {
+            "type": "string",
+            "readOnly": true,
+          },
+          "ip_address": {
+            "type": "string",
+            "readOnly": true,
+          },
+        },
       },
       "PushNotificationProfile": {
         "type": "object",

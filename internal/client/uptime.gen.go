@@ -2622,6 +2622,13 @@ type PasswordReset struct {
 	Email *openapi_types.Email `json:"email,omitempty"`
 }
 
+// ProbeServer defines model for ProbeServer.
+type ProbeServer struct {
+	IpAddress *string `json:"ip_address,omitempty"`
+	Location  *string `json:"location,omitempty"`
+	ProbeName *string `json:"probe_name,omitempty"`
+}
+
 // PushNotificationProfile defines model for PushNotificationProfile.
 type PushNotificationProfile struct {
 	// Array of contact names or IDs to this push notification will receive alerts for.
@@ -19627,6 +19634,7 @@ func (r GetOutageDetailResponse) StatusCode() int {
 type GetMonitoringServerListResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *[]ProbeServer
 }
 
 // Status returns HTTPResponse.Status
@@ -25956,6 +25964,16 @@ func ParseGetMonitoringServerListResponse(rsp *http.Response) (*GetMonitoringSer
 	response := &GetMonitoringServerListResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest []ProbeServer
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	}
 
 	return response, nil
