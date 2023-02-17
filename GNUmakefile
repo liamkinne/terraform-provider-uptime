@@ -8,9 +8,8 @@ help: ## self documenting help output
 gen: ## generate docs and openapi client code
 	go generate ./... -v
 
-# Run acceptance tests
 .PHONY: testacc
-testacc: ## run tests
+testacc: ## run acceptance tests
 	TF_ACC=1 go test ./... -v $(TESTARGS) -timeout 120m
 
 .PHONY: gettoken
